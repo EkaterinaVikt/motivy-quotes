@@ -8,6 +8,23 @@
 
 $ENFont: "La Belle Aurore", "Yanone Kaffeesatz", cursive;
 $btnFont: "Yanone Kaffeesatz";
+$baseColor: #cbced1;
+$baseButtonColor: #ecf0f3;
+$baseFontColor: #555;
+$baseBorderRadius: 20px;
+$variantBaseColor: #e9cfbf;
+$activeColor: rgb(27, 27, 27);
+
+@mixin shadow-base {
+  box-shadow: 13px 13px 20px $baseColor, -13px -13px 20px #fff;
+}
+
+@mixin baseFontSettings {
+  font-family: $ENFont;
+  font-color: #555;
+  // letter-space: 0.01em;
+  // line-height: 2.6em;
+}
 
 @mixin centered {
   position: absolute;
@@ -16,22 +33,53 @@ $btnFont: "Yanone Kaffeesatz";
   transform: translate(-50%, -50%);
 }
 
+@mixin transition-base($properties...) {
+  transition: 0.3s;
+
+  @if length($properties) > 0 {
+    transition-property: $properties;
+  }
+}
+
+@mixin containAndBtn {
+  @include centered;
+  @include shadow-base;
+  @include baseFontSettings;
+  border-radius: $baseBorderRadius;
+  background-color: $baseButtonColor;
+  margin: auto;
+  border: 0;
+}
+
 .main {
   width: 100%;
   height: 100vh;
-  background-color: hsl(34, 78%, 91%);
-  font-family: $ENFont;
+  background-color: $baseButtonColor;
+}
+
+.contain {
+  @include containAndBtn;
+  width: 50%;
+  height: 10em;
 }
 
 .btn {
-  @include centered;
-  margin: auto;
-  font-family: $btnFont;
+  @include containAndBtn;
   font-size: 2em;
-  border: 0;
-  height: 6em;
-  width: 50%;
-  padding: 0 2em;
+  width: 100%;
+  height: 100%;
+  padding: 0.5em 0;
+  transition: 0.4s;
+  background-color: transparent;
+
+  &:hover {
+    background-color: #dee3e6;
+    color: $activeColor;
+  }
+  &:active {
+    box-shadow: inset 15px 15px 20px #cbced1, inset -15px -15px 20px #fff;
+    color: $activeColor;
+  }
 }
 
 .nonbtn {
@@ -40,7 +88,9 @@ $btnFont: "Yanone Kaffeesatz";
 
 .quote {
   @include centered;
-  width: 70vw;
+  width: 100%;
+  color: $activeColor;
   text-align: center;
   font-size: 2rem;
+  background: transparent;
 }

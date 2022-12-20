@@ -45,15 +45,18 @@ export default function Quotes(props) {
   return (
     <div>
       <div className={styles.main}>
-        <button
-          className={data[1] ? styles.btn : styles.nonbtn}
-          onClick={() => {
-            getQuote();
-          }}
-        >
-          Get your motivation for today
-        </button>
-        <div className={styles.quote}>{data}</div>
+        <div className={styles.contain}>
+          <button
+            className={data[1] ? styles.btn : styles.nonbtn}
+            onClick={() => {
+              getQuote();
+            }}
+          >
+            Get your motivation for today
+          </button>
+
+          <div className={styles.quote}>{data}</div>
+        </div>
       </div>
     </div>
   );
