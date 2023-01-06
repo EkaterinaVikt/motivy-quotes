@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-$ENFont: "La Belle Aurore", "Yanone Kaffeesatz", cursive;
+$ENFont: "Yanone Kaffeesatz", cursive;
 $btnFont: "Yanone Kaffeesatz";
 $baseColor: #cbced1;
 $baseButtonColor: #ecf0f3;
@@ -14,6 +14,8 @@ $baseFontColor: #555;
 $baseBorderRadius: 20px;
 $variantBaseColor: #e9cfbf;
 $activeColor: rgb(27, 27, 27);
+$baseWidth: 60%;
+$baseColorHover: #cbced1;
 
 @mixin shadow-base {
   box-shadow: 13px 13px 20px $baseColor, -13px -13px 20px #fff;
@@ -22,8 +24,7 @@ $activeColor: rgb(27, 27, 27);
 @mixin baseFontSettings {
   font-family: $ENFont;
   font-color: #555;
-  // letter-space: 0.01em;
-  // line-height: 2.6em;
+  font-size: clamp(2rem, 3vw, 2.5rem);
 }
 
 @mixin centered {
@@ -52,22 +53,24 @@ $activeColor: rgb(27, 27, 27);
 }
 
 .main {
+  display: grid;
+  grid-template-rows: 90% 1fr;
   width: 100%;
   height: 100vh;
   background-color: $baseButtonColor;
 }
 
-.contain {
-  @include containAndBtn;
-  width: 50%;
-  height: 10em;
-}
+// .contain {
+//   @include containAndBtn;
+//   width: 50%;
+//   height: 10em;
+// }
 
 .btn {
   @include containAndBtn;
-  font-size: 2em;
-  width: 100%;
-  height: 100%;
+
+  width: $baseWidth;
+  // height: 100%;
   padding: 0.5em 0;
   transition: 0.4s;
   background-color: transparent;
@@ -87,10 +90,34 @@ $activeColor: rgb(27, 27, 27);
 }
 
 .quote {
+  @include containAndBtn;
   @include centered;
-  width: 100%;
+  @include baseFontSettings;
+  width: $baseWidth;
   color: $activeColor;
   text-align: center;
-  font-size: 2rem;
-  background: transparent;
+  // background: transparent;
+  background: #7663;
+  // height: calc($heightQuote + 3em);
+  padding: 0.5em;
+}
+
+footer {
+  @include baseFontSettings;
+  @include centered;
+  height: 1em;
+  text-align: center;
+  font-size: 1em;
+  color: rgba(85, 85, 85, 0.477);
+  cursor: pointer;
+  &:hover {
+    background-color: $baseColorHover;
+  }
+  width: max-content;
+  top: 92%;
+}
+
+// Окно О нас
+.aboutUs {
+  display: none;
 }

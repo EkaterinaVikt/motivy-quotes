@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Quotes.module.css";
+import AboutUs from "./AboutUs/AboutUs";
+import styles from "./MainPage.module.css";
 
 console.log(window.localStorage);
 // ВРЕМЕННАЯ ОЧИСТКА ДЛЯ СТИЛЕЙ
@@ -42,6 +43,10 @@ export default function Quotes(props) {
   }
   resetLocalStorage();
 
+  const showAboutUsModal = () => {
+    //функция, которая будет диспатчить нужный экшн в редьюсер модального окна
+  };
+
   return (
     <div>
       <div className={styles.main}>
@@ -57,6 +62,10 @@ export default function Quotes(props) {
 
           <div className={styles.quote}>{data}</div>
         </div>
+        <footer onClick={showAboutUsModal}>
+          <span>Что это такое?</span>
+          <AboutUs />
+        </footer>
       </div>
     </div>
   );
