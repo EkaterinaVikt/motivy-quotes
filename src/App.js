@@ -1,7 +1,7 @@
-import QuotesAsync from "./Components/QuotesAsync";
+import MainPage from "./Components/MainPage";
 
 function App(props) {
-  return <QuotesAsync store={props.store} />;
+  return <MainPage store={props.store} />;
 }
 
 export default App;

@@ -1,0 +1,153 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$ENFont: "Yanone Kaffeesatz", cursive;
+$btnFont: "Yanone Kaffeesatz";
+$baseColor: #cbced1;
+$baseButtonColor: #ecf0f3;
+$baseFontColor: #555;
+$baseBorderRadius: 20px;
+$variantBaseColor: #e9cfbf;
+$activeColor: rgb(27, 27, 27);
+$baseWidth: 60%;
+$baseColorHover: #cbced1;
+
+@mixin shadow-base {
+  box-shadow: 13px 13px 20px $baseColor, -13px -13px 20px #fff;
+}
+
+@mixin baseFontSettings {
+  font-family: $ENFont;
+  color: #555;
+  font-size: clamp(2rem, 3vw, 2.5rem);
+}
+
+@mixin centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin transition-base($properties...) {
+  transition: 0.3s;
+
+  @if length($properties) > 0 {
+    transition-property: $properties;
+  }
+}
+
+@mixin containAndBtn {
+  @include centered;
+  @include shadow-base;
+  @include baseFontSettings;
+  border-radius: $baseBorderRadius;
+  background-color: $baseButtonColor;
+  margin: auto;
+  border: 0;
+}
+
+.main {
+  display: grid;
+  grid-template-rows: 90% 1fr;
+  width: 100%;
+  height: 100vh;
+  background-color: $baseButtonColor;
+}
+
+// .contain {
+//   @include containAndBtn;
+//   width: 50%;
+//   height: 10em;
+// }
+
+.btn {
+  @include containAndBtn;
+
+  width: $baseWidth;
+  // height: 100%;
+  padding: 0.5em 0;
+  transition: 0.4s;
+  background-color: transparent;
+
+  &:hover {
+    background-color: #dee3e6;
+    color: $activeColor;
+  }
+  &:active {
+    box-shadow: inset 15px 15px 20px #cbced1, inset -15px -15px 20px #fff;
+    color: $activeColor;
+  }
+}
+
+.nonbtn {
+  display: none;
+}
+
+.quote {
+  @include containAndBtn;
+  @include centered;
+  @include baseFontSettings;
+  width: $baseWidth;
+  color: $activeColor;
+  text-align: center;
+  // background: transparent;
+  background: #7663;
+  // height: calc($heightQuote + 3em);
+  padding: 1em;
+}
+
+.nonquote {
+  display: none;
+}
+
+footer {
+  @include baseFontSettings;
+  @include centered;
+  height: 1em;
+  text-align: center;
+  font-size: 1em;
+  color: rgba(85, 85, 85, 0.477);
+  cursor: pointer;
+  &:hover {
+    background-color: $baseColorHover;
+  }
+  width: max-content;
+  top: 92%;
+}
+
+// Окно О нас
+
+.modal {
+  height: 100vh;
+  width: 100vh;
+  background-color: rgba(85, 85, 85, 0.477);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutUs {
+  @include baseFontSettings;
+  @include centered;
+  color: $activeColor;
+  text-align: center;
+  padding: 1em;
+  width: 80%;
+  background-color: $baseButtonColor;
+  border-radius: $baseBorderRadius;
+  // временно, пока работаю с блоком Цитата
+  // display: none;
+}
+
+.nonAboutUs {
+  display: none;
+}

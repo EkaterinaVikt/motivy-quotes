@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Quotes.module.css";
+import AboutUs from "./AboutUs/AboutUs";
+import styles from "./MainPage.module.css";
+import QuoteOfDay from "./QuoteOfDay/QuoteOfDay";
 
 console.log(window.localStorage);
 // ВРЕМЕННАЯ ОЧИСТКА ДЛЯ СТИЛЕЙ
@@ -23,24 +25,31 @@ const useLocalStorageListWithData = (key, defaultValue) => {
   return [storageData, setStorageData];
 };
 
-export default function Quotes(props) {
+export default function MainPage(props) {
   const allQuotes = props.store.getState().quotePage.quotes;
   // здесь нужно решить вопрос с тем, чтобы записывать всё-таки не массив, а объект. Записать можно только массив. Как записать объект, если Object is not React child?
   const [data, setData] = useLocalStorageListWithData("data", [" ", true]);
+  const [showQuoteOfDay, setShowQuoteOfDay] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   let getQuote = () => {
     let i = getRandomNum(allQuotes.length);
     setData([allQuotes[i], false]);
+    setShowQuoteOfDay(true);
   };
 
   function resetLocalStorage() {
     let now = new Date().getHours();
-    console.log(now);
     if (now === 1) {
       localStorage.clear();
     }
   }
   resetLocalStorage();
+
+  const showAboutUsModal = () => {
+    //функция, которая будет диспатчить нужный экшн в редьюсер модального окна
+    showModal ? setShowModal(false) : setShowModal(true);
+  };
 
   return (
     <div>
@@ -54,9 +63,16 @@ export default function Quotes(props) {
           >
             Get your motivation for today
           </button>
+          {/* <QuoteOfDay props={data} /> */}
 
-          <div className={styles.quote}>{data}</div>
+          <div className={showQuoteOfDay ? styles.quote : styles.nonquote}>
+            {data}
+          </div>
         </div>
+        <footer onClick={showAboutUsModal}>
+          <span>Что это такое?</span>
+        </footer>
+        {showModal && <AboutUs />}
       </div>
     </div>
   );
