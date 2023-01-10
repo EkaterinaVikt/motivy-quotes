@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AboutUs from "./AboutUs/AboutUs";
+import Alarm from "./Alarm/Alarm";
 import styles from "./MainPage.module.css";
 import QuoteOfDay from "./QuoteOfDay/QuoteOfDay";
 
@@ -30,7 +31,6 @@ export default function MainPage(props) {
   // здесь нужно решить вопрос с тем, чтобы записывать всё-таки не массив, а объект. Записать можно только массив. Как записать объект, если Object is not React child?
   const [data, setData] = useLocalStorageListWithData("data", [" ", true]);
   const [showQuoteOfDay, setShowQuoteOfDay] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   let getQuote = () => {
     let i = getRandomNum(allQuotes.length);
@@ -48,8 +48,10 @@ export default function MainPage(props) {
 
   const showAboutUsModal = () => {
     //функция, которая будет диспатчить нужный экшн в редьюсер модального окна
-    showModal ? setShowModal(false) : setShowModal(true);
   };
+
+  const [modalActive, setModalActive] = useState(false);
+  const [showAlarm, setShowAlarm] = useState(false);
 
   return (
     <div>
@@ -69,10 +71,12 @@ export default function MainPage(props) {
             {data}
           </div>
         </div>
-        <footer onClick={showAboutUsModal}>
+
+        <footer onClick={() => setModalActive(true)}>
           <span>Что это такое?</span>
         </footer>
-        {showModal && <AboutUs />}
+        <Alarm showAlarm={showAlarm} />
+        <AboutUs active={modalActive} setActive={setModalActive} />
       </div>
     </div>
   );
