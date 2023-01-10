@@ -97,9 +97,11 @@ $baseColorHover: #cbced1;
   color: $activeColor;
   text-align: center;
   // background: transparent;
-  background: #7663;
+  background-color: rgba(216 255 118 / 20%);
+
   // height: calc($heightQuote + 3em);
   padding: 1em;
+  box-shadow: inset 0px -3px 9px 0px rgba(85, 85, 85, 0.477);
 }
 
 .nonquote {
@@ -121,11 +123,11 @@ footer {
   top: 92%;
 }
 
-// Окно О нас
+// МОДАЛЬНОЕ ОКНО
 
 .modal {
   height: 100vh;
-  width: 100vh;
+  // width: 100vh;
   background-color: rgba(85, 85, 85, 0.477);
   position: fixed;
   top: 0;
@@ -133,20 +135,65 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
 }
+
+// временное решение, пока не подключила clsx
+.modalActive {
+  height: 100vh;
+  background-color: rgba(85, 85, 85, 0.477);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  pointer-events: all;
+  transition: 0.4s;
+}
+
+// .modal.active {
+//   opacity: 1;
+//   pointer-events: all;
+// }
+
+// Окно О нас
 
 .aboutUs {
   @include baseFontSettings;
-  @include centered;
+  // @include centered;
   color: $activeColor;
   text-align: center;
   padding: 1em;
   width: 80%;
   background-color: $baseButtonColor;
   border-radius: $baseBorderRadius;
+  transform: scale(0.5);
+  transition: 0.4s all;
   // временно, пока работаю с блоком Цитата
   // display: none;
 }
+
+// временно, пока не подключила clsx
+.aboutUsActive {
+  @include baseFontSettings;
+  // @include centered;
+  color: $activeColor;
+  text-align: center;
+  padding: 1em;
+  width: 80%;
+  background-color: $baseButtonColor;
+  border-radius: $baseBorderRadius;
+  transform: scale(1);
+  transition: 0.4s all;
+}
+
+// .aboutUs.active {
+//   transform: scale(1);
+// }
 
 .nonAboutUs {
   display: none;
