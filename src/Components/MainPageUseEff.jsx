@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import AboutUs from "./AboutUs/AboutUs";
 import Alarm from "./Alarm/Alarm";
 import styles from "./MainPage.module.css";
+import QuoteOfDay from "./QuoteOfDay/QuoteOfDay";
 
 console.log(window.localStorage);
-// ВРЕМЕННАЯ ОЧИСТКА
+// ВРЕМЕННАЯ ОЧИСТКА ДЛЯ СТИЛЕЙ
 // localStorage.clear();
 // функция получения рандомного числа
 function getRandomNum(max) {
@@ -12,11 +13,21 @@ function getRandomNum(max) {
   return num;
 }
 
+function resetLocalStorage() {
+  let now = new Date().getHours();
+  if (now === 1) {
+    console.log(now);
+    localStorage.clear();
+  }
+}
+resetLocalStorage();
+
 // кастомный хук для записи данных в localStorage и получения их оттуда при рендеринге страницы
 const useLocalStorageListWithData = (key, defaultValue) => {
   const [storageData, setStorageData] = useState(
     () => JSON.parse(localStorage.getItem(key)) || defaultValue
   );
+  console.log(storageData);
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(storageData));
@@ -30,7 +41,10 @@ export default function MainPage(props) {
 
   const [data, setData] = useLocalStorageListWithData("data", {
     quote: " ",
+    // showQuote: false,
   });
+  // const [showQuoteOfDay, setShowQuoteOfDay] = useState(false);
+
   const [showQuoteOfDay, setShowQuoteOfDay] = useLocalStorageListWithData(
     "showQuote",
     false
@@ -40,23 +54,21 @@ export default function MainPage(props) {
   const [showAlarm, setShowAlarm] = useState(false);
   const showAlarmMessage = () => setShowAlarm(true);
 
+  // useEffect(() => {
+  //   console.log(`Состояние showQuoteOfDay: ${showQuoteOfDay}`);
+  // });
+
   let getQuote = () => {
     let i = getRandomNum(allQuotes.length);
     setData({
       quote: allQuotes[i],
+      // showQuote: true,
     });
     setShowQuoteOfDay([true]);
+    // setShowQuoteOfDay(true);
 
     setTimeout(showAlarmMessage, 10000);
   };
-
-  function resetLocalStorage() {
-    let now = new Date().getHours();
-    if (now === 1) {
-      localStorage.clear();
-    }
-  }
-  resetLocalStorage();
 
   const showAboutUsModal = () => {
     //функция, которая будет диспатчить нужный экшн в редьюсер модального окна
@@ -76,6 +88,9 @@ export default function MainPage(props) {
           </button>
           {/* <QuoteOfDay props={data} /> */}
 
+          {/* <div className={showQuoteOfDay ? styles.quote : styles.nonquote}>
+            {data.quote}
+          </div> */}
           <div className={showQuoteOfDay ? styles.quote : styles.nonquote}>
             {data.quote}
           </div>
