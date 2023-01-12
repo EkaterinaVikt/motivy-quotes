@@ -52,6 +52,7 @@ export default function MainPage(props) {
 
   function resetLocalStorage() {
     let now = new Date().getHours();
+
     if (now === 1) {
       localStorage.clear();
     }
