@@ -3,9 +3,8 @@ import AboutUs from "./AboutUs/AboutUs";
 import Alarm from "./Alarm/Alarm";
 import styles from "./MainPage.module.css";
 
-console.log(window.localStorage);
-// ВРЕМЕННАЯ ОЧИСТКА
-// localStorage.clear();
+// console.log(window.localStorage);
+
 // функция получения рандомного числа
 function getRandomNum(max) {
   let num = Math.floor(Math.random() * max);
@@ -35,6 +34,8 @@ export default function MainPage(props) {
     "showQuote",
     false
   );
+  const [dateOfGettingQuote, setDateOfGettingQuote] =
+    useLocalStorageListWithData("date", 0);
 
   const [modalActive, setModalActive] = useState(false);
   const [showAlarm, setShowAlarm] = useState(false);
@@ -47,13 +48,17 @@ export default function MainPage(props) {
     });
     setShowQuoteOfDay([true]);
 
-    setTimeout(showAlarmMessage, 10000);
+    let timeOfGetQuote = new Date().getDate();
+
+    setDateOfGettingQuote(timeOfGetQuote);
   };
 
-  function resetLocalStorage() {
-    let now = new Date().getHours();
+  if (showQuoteOfDay) setTimeout(showAlarmMessage, 10000);
 
-    if (now === 1) {
+  function resetLocalStorage() {
+    let now = new Date().getDate();
+
+    if (now > dateOfGettingQuote) {
       localStorage.clear();
     }
   }

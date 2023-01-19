@@ -60,11 +60,10 @@ $baseColorHover: #cbced1;
   background-color: $baseButtonColor;
 }
 
-// .contain {
-//   @include containAndBtn;
-//   width: 50%;
-//   height: 10em;
-// }
+.contain {
+  height: 100vh;
+  // @include centered;
+}
 
 .btn {
   @include containAndBtn;

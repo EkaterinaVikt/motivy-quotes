@@ -17,6 +17,10 @@
   background-color: #ecf0f3;
 }
 
+.contain {
+  height: 100vh;
+}
+
 .btn {
   position: absolute;
   top: 50%;
