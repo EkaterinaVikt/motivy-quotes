@@ -15,8 +15,8 @@ export default function AboutUs({ active, setActive, children }) {
         <p>
           {" "}
           Раз в сутки приложение генерирует для вас случайную мотивирующую
-          цитату или полезную мысль. Просто нажмите кнопку Get your motivation
-          for today. Получить новую цитату можно в 01.00.00 (UTC+3).
+          цитату или полезную мысль. Просто нажмите кнопку «Get your motivation
+          for today». Получить новую цитату можно в 00:01.
         </p>
       </div>
     </div>
