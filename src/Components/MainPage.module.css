@@ -18,7 +18,8 @@
 }
 
 .contain {
-  height: 100vh;
+  height: 90vh;
+  position: relative;
 }
 
 .btn {
@@ -37,7 +38,7 @@
   margin: auto;
   border: 0;
   width: 60%;
-  padding: 0.5em 0;
+  padding: 0.5em;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   background-color: transparent;
@@ -71,18 +72,16 @@
   background-color: #ecf0f3;
   margin: auto;
   border: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Yanone Kaffeesatz", cursive;
-  color: #555;
-  font-size: clamp(2rem, 3vw, 2.5rem);
   width: 60%;
   color: rgb(27, 27, 27);
   text-align: center;
   background-color: rgba(216, 255, 118, 0.2);
   padding: 1em;
+}
+@media screen and (max-width: 480px) {
+  .quote {
+    width: 74%;
+  }
 }
 
 .nonquote {

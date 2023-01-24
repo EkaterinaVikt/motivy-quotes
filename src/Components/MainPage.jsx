@@ -53,16 +53,22 @@ export default function MainPage(props) {
     setDateOfGettingQuote(timeOfGetQuote);
   };
 
-  if (showQuoteOfDay) setTimeout(showAlarmMessage, 10000);
+  if (showQuoteOfDay) setTimeout(showAlarmMessage, 8000);
 
-  function resetLocalStorage() {
+  // function resetLocalStorage() {
+  //   let now = new Date().getDate();
+  //   if (now > dateOfGettingQuote) {
+  //     localStorage.clear();
+  //   }
+  // }
+  // resetLocalStorage();
+
+  useEffect(() => {
     let now = new Date().getDate();
-
     if (now > dateOfGettingQuote) {
       localStorage.clear();
     }
-  }
-  resetLocalStorage();
+  });
 
   const showAboutUsModal = () => {
     //функция, которая будет диспатчить нужный экшн в редьюсер модального окна
@@ -89,7 +95,11 @@ export default function MainPage(props) {
         <Alarm showAlarm={showAlarm} />
         <footer onClick={() => setModalActive(true)}>
           <div>
-            <span>Что это такое?</span>
+            <span>
+              Что это такое?
+              <br />
+            </span>
+            <span>&#169;</span>
           </div>
         </footer>
 
