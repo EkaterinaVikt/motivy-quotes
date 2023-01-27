@@ -55,14 +55,6 @@ export default function MainPage(props) {
 
   if (showQuoteOfDay) setTimeout(showAlarmMessage, 8000);
 
-  // function resetLocalStorage() {
-  //   let now = new Date().getDate();
-  //   if (now > dateOfGettingQuote) {
-  //     localStorage.clear();
-  //   }
-  // }
-  // resetLocalStorage();
-
   useEffect(() => {
     let now = new Date().getDate();
     if (now > dateOfGettingQuote) {
