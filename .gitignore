@@ -24,3 +24,12 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# Ignore draft
+MINDMAP.md
+
+#Ignore code draft 
+MainPageDraft.jsx
+
+#Ignore ToDo
+TODO.md
