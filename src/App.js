@@ -1,4 +1,4 @@
-import MainPage from "./Components/MainPage";
+import MainPageTemp from "./Components/MainPageTemp";
 // import MainPageUseEff from "./Components/MainPageUseEff";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -12,7 +12,7 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         {/* <Route path="/main" element={<MainPage store={props.store} />} /> */}
-        <Route path="/*" element={<MainPage store={props.store} />} />
+        <Route path="/*" element={<MainPageTemp store={props.store} />} />
       </Routes>
     </BrowserRouter>
   );

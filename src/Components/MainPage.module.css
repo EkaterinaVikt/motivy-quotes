@@ -203,3 +203,8 @@ footer:hover {
 .nonShowAlarm {
   display: none;
 }
+
+.author {
+  font-size: 0.5em;
+  color: rgba(203, 206, 209, 0.82);
+}
